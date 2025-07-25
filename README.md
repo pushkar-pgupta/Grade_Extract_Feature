@@ -2,7 +2,7 @@
 
 A Flask web application to automate the extraction and calculation of academic grades from `.txt` files.
 
-**Live Application:** `[http://ocdalpha.pythonanywhere.com/]`
+**Live Application:** [http://ocdalpha.pythonanywhere.com/]
 
 ## Key Features
 
