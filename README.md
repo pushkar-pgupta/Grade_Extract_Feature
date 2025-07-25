@@ -2,7 +2,7 @@
 Grade Sheet Extractor
 A full-stack web application designed to automate the tedious process of checking academic grade sheets. This tool allows users to upload multiple grade sheet files (.txt format), enter a registration number, and instantly receive a consolidated view of their grades and a calculated Semester Grade Point Average (SGPA).
 
-Live Application Link: [Link to your live PythonAnywhere site]
+Live Application Link: [(http://ocdalpha.pythonanywhere.com/)]
 
 The Problem
 For many students, the end-of-semester process involves manually searching through multiple grade sheet documents, finding their results one by one, and then performing manual calculations to determine their SGPA. This process is repetitive, inefficient, and susceptible to human error. This project was born out of the need to solve this exact problem.
