@@ -1,68 +1,59 @@
-# Grade_Extract_Feature
-Grade Sheet Extractor
-A full-stack web application designed to automate the tedious process of checking academic grade sheets. This tool allows users to upload multiple grade sheet files (.txt format), enter a registration number, and instantly receive a consolidated view of their grades and a calculated Semester Grade Point Average (SGPA).
+# Grade Sheet Extractor
 
-Live Application Link: [(http://ocdalpha.pythonanywhere.com/)]
+A Flask web application to automate the extraction and calculation of academic grades from `.txt` files.
 
-The Problem
-For many students, the end-of-semester process involves manually searching through multiple grade sheet documents, finding their results one by one, and then performing manual calculations to determine their SGPA. This process is repetitive, inefficient, and susceptible to human error. This project was born out of the need to solve this exact problem.
+**Live Application:** `[Link to your live PythonAnywhere site]`
 
-Features
-Multi-File Upload: Users can upload all their semester grade sheets at once.
+## Key Features
 
-Dynamic Data Extraction: The Python backend parses the text files to find and extract subject details, credits, marks, and grades for a specific registration number.
+* **Multi-File Upload:** Process multiple grade sheets at once.
+* **Automated Data Parsing:** Extracts subject details, marks, and grades for a specific registration number.
+* **Instant SGPA Calculation:** On-demand calculation and display of the Semester Grade Point Average.
+* **Interactive UI:** Built with Bootstrap, providing a clean user experience and dynamic feedback on file uploads.
+* **Server-Side Validation:** Ensures correct file types and presence of required inputs.
 
-Consolidated Results: Displays all extracted grades in a clean, easy-to-read table.
+## Tech Stack
 
-Optional SGPA Calculation: An interactive "Calculate SGPA" button reveals the final SGPA along with a performance indicator.
+* **Backend:** Python, Flask
+* **Frontend:** HTML, CSS, JavaScript, Bootstrap 5
+* **Deployment:** PythonAnywhere
 
-Modern UI: A clean, responsive user interface built with Bootstrap, featuring a dynamic file list that reads subject titles directly from uploaded files.
+## Overview
 
-Robust Error Handling: The application validates user input to ensure a registration number is entered and that all uploaded files are of the correct .txt format.
+This project was built to solve the common, repetitive task of manually checking grade sheets. The application's core is a Python script that parses text-based grade files to find data corresponding to a user-provided registration number. This logic is served through a Flask backend. The development process involved building the UI, adding client-side interactivity with JavaScript (like reading file contents in the browser), and deploying the final application as a live web service.
 
-Tech Stack
-Backend: Python, Flask
+## Development Challenges & Key Fixes
 
-Frontend: HTML, CSS, JavaScript, Bootstrap 5
+The development process involved overcoming several key technical challenges:
 
-Deployment: PythonAnywhere
+* **Incorrect Data Matching:** A critical lapse was identified in the initial search logic. The script used a partial `startswith()` match, which caused it to pull data for incorrect registration numbers (e.g., a search for `20230001` would incorrectly match `202300001`). This was resolved by implementing a strict, exact-match comparison on the registration number.
+* **Template Rendering Errors:** While working with Flask's Jinja2 template engine, two main errors occurred:
+    1.  An `UndefinedError` was triggered when trying to access a dictionary key containing a hyphen (e.g., `End-Sem`) with dot notation. The fix was to use bracket notation (`row['End-Sem']`).
+    2.  A `TemplateSyntaxError` occurred due to an unclosed `{% if %}` block, which was resolved by ensuring all conditional blocks were properly terminated with `{% endif %}`.
+* **Static File Loading Failure:** After refactoring the CSS and JavaScript into separate files, the browser failed to load them, resulting in a loss of all styling and interactivity. This was traced back to an incorrect folder structure and fixed by placing the assets in the `static/` directory and using Flask's `url_for()` helper to generate the correct paths.
 
-Project Evolution & Challenges
-This project was developed iteratively, starting as a simple command-line script and evolving into a full-fledged web application. This journey involved several key technical challenges and learning opportunities:
+## Local Setup
 
-From Script to Web App: The initial Python script for data parsing was refactored and integrated into a Flask backend to handle web requests, file uploads, and server-side logic.
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/YourUserName/Grade_Extract_Feature.git](https://github.com/YourUserName/Grade_Extract_Feature.git)
+    cd Grade_Extract_Feature
+    ```
 
-Search Algorithm Refinement: A significant bug was identified where the search logic used a partial match (startswith()), leading to incorrect data being pulled for similar registration numbers. This was fixed by implementing a more robust exact-match comparison.
+2.  **Create and activate a virtual environment:**
+    ```bash
+    python -m venv venv
+    # On Windows: .\venv\Scripts\activate
+    # On macOS/Linux: source venv/bin/activate
+    ```
 
-Frontend Interactivity: Advanced JavaScript using the FileReader API was implemented to read file contents directly in the browser, providing users with immediate feedback on the subjects they had uploaded.
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Static Asset Management: A key learning experience involved correctly structuring the project with static and templates folders and using Flask's url_for() helper to link CSS and JavaScript files, resolving 404 errors encountered after refactoring.
-
-Local Setup and Installation
-To run this project on your local machine, follow these steps:
-
-Clone the repository:
-
-git clone https://github.com/YourUserName/Grade_Extract_Feature.git
-cd Grade_Extract_Feature
-
-Create and activate a virtual environment:
-
-# Create the environment
-python -m venv venv
-
-# Activate on Windows
-.\venv\Scripts\activate
-
-# Activate on macOS/Linux
-source venv/bin/activate
-
-Install the required dependencies:
-
-pip install -r requirements.txt
-
-Run the Flask application:
-
-python app.py
-
-Open your web browser and navigate to http://127.0.0.1:5000 to use the application.
+4.  **Run the application:**
+    ```bash
+    python app.py
+    ```
+    The application will be available at `http://127.0.0.1:5000`.
