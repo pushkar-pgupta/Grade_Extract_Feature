@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Extraction Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container py-5">
+
+    {% if error %}
+        <div class="alert alert-danger text-center" role="alert">
+            <h4 class="alert-heading">Error!</h4>
+            <p>{{ error }}</p>
+            <hr>
+            <a href="/" class="btn btn-danger">Go Back and Try Again</a>
+        </div>
+    {% else %}
+        <div class="text-center">
+            <h1 class="display-5">Results for Registration Number</h1>
+            <h2 class="text-primary">{{ regno }}</h2>
+        </div>
+
+        {% if data %}
+            <div class="table-responsive mt-4">
+                <table class="table table-dark table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Subject</th>
+                            <th>Credits</th>
+                            <th>Internal</th>
+                            <th>End-Sem</th>
+                            <th>Total</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data %}
+                        <tr>
+                            <td>{{ row.Code }}</td>
+                            <td>{{ row.Subject }}</td>
+                            <td>{{ row.Credits }}</td>
+                            <td>{{ row.Internal }}</td>
+                            <td>{{ row['End-Sem'] }}</td>
+                            <td>{{ row.Total }}</td>
+                            <td>{{ row.Grade }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                <button id="calculate-btn" class="btn btn-success btn-lg">Calculate SGPA</button>
+            </div>
+
+            <div id="sgpa-result" class="text-center mt-4" style="display: none;">
+                <h2>Calculated SGPA: <span id="sgpa-value">{{ sgpa }}</span></h2>
+                <div id="sgpa-circle" class="mx-auto mt-3">
+                    <p id="sgpa-remark" class="lead m-0"></p>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center lead mt-4">No results found for this registration number.</p>
+        {% endif %} <div class="text-center mt-5">
+            <a href="/" class="btn btn-secondary">Extract Again</a>
+        </div>
+    {% endif %} </div>
+
+<script src="{{ url_for('static', filename='js/results.js') }}"></script>
+</body>
+</html>

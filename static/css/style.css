@@ -1,0 +1,39 @@
+body, html {
+    height: 100%;
+}
+body {
+    background-color: #0d1117;
+    background-image: 
+        radial-gradient(at 0% 0%, hsla(190, 80%, 45%, 0.4) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, hsla(240, 70%, 50%, 0.3) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(57, 92%, 46%, 0.25) 0px, transparent 50%);
+}
+#file-list-container {
+    margin-top: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #333;
+    border-radius: .5rem;
+    padding: 10px;
+    min-height: 50px;
+}
+#sgpa-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-weight: bold;
+    
+    /* New "Frosted Glass" Styles */
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    /* --- Add these two new lines --- */
+    font-size: 1.75rem;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
