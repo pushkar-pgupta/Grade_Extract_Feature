@@ -1,4 +1,4 @@
-// Wait until the HTML document is fully loaded
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const calculateBtn = document.getElementById('calculate-btn');
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const sgpa = parseFloat(sgpaValueSpan.textContent);
         
-        // Determine the remark based on SGPA
+       
         let remark = '';
 
         if (sgpa >= 9.0) {

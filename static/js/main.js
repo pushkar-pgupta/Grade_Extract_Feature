@@ -2,7 +2,7 @@ const fileInput = document.getElementById('files');
 const fileListContainer = document.getElementById('file-list-container');
 
 fileInput.addEventListener('change', () => {
-    fileListContainer.innerHTML = ''; // Clear the previous list/message
+    fileListContainer.innerHTML = ''; 
 
     if (fileInput.files.length === 0) {
         fileListContainer.innerHTML = '<p class="text-white-50 m-0">Selected files will appear here...</p>';

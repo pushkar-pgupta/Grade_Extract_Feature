@@ -7,8 +7,7 @@ def calculate_sgpa(results_data, grade_points):
     total_credits_attempted = 0
     total_credit_points = 0
     
-    # Grades to be ignored in SGPA calculation
-    # IMPORTANT: Confirm if there are other grades to ignore (e.g., 'MP', 'DT')
+
     ignored_grades = {'I', 'AB', 'DT', 'MP'}
 
     for subject in results_data:
@@ -30,7 +29,7 @@ def calculate_sgpa(results_data, grade_points):
 
 
 def extract_student_data(reg_no, folder_path):
-    """Scans all text files in a folder to extract grade data for a specific student."""
+    
     all_results = []
     
     grade_files = [f for f in os.listdir(folder_path) if f.endswith('.txt')]
@@ -87,7 +86,7 @@ if __name__ == "__main__":
         print(f"\nShowing results for Registration Number: {args.regno}\n")
         print(tabulate(final_data, headers="keys", tablefmt="grid"))
         
-        # --- Calculate and Display SGPA ---
+        # Calculate and Display SGPA
         sgpa = calculate_sgpa(final_data, grade_points_map)
         print(f"\nCalculated SGPA: {sgpa:.2f}") # Formats SGPA to 2 decimal places
 

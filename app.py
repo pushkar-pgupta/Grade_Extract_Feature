@@ -1,7 +1,6 @@
 import os
 from flask import Flask, render_template, request
 
-# --- Logic Functions (copied from our original script) ---
 
 def calculate_sgpa(results_data, grade_points):
     """Calculates the SGPA from a list of subjects."""
@@ -28,11 +27,11 @@ def calculate_sgpa(results_data, grade_points):
 
 
 def extract_student_data(reg_no, files):
-    """Scans uploaded text files to extract grade data for a specific student."""
+    
     all_results = []
     
     for file in files:
-        # Important: Read the file stream and decode it
+        
         content = file.stream.read().decode("utf-8")
         lines = content.splitlines()
         
@@ -63,12 +62,12 @@ def extract_student_data(reg_no, files):
                         "Grade": parts[4]
                     }
                     all_results.append(student_data)
-                    break # Found student, move to next file
+                    break 
     
     return all_results
 
 
-# --- Flask Application ---
+#  Flask 
 
 app = Flask(__name__)
 
@@ -81,7 +80,7 @@ def upload_files():
     regno = request.form['regno']
     files = request.files.getlist('grade_files')
 
-    # --- New Error Handling ---
+    #  Error Handling
     # Check if regno or files are missing
     if not regno or not files[0].filename:
         error_message = "Please enter a registration number and select your grade sheet files."
@@ -93,17 +92,17 @@ def upload_files():
             error_message = f"Invalid file type: '{file.filename}'. Please upload only .txt files."
             return render_template('results.html', error=error_message)
 
-    # --- Grade to Point Mapping ---
+    #  Grade to Point Mapping
     grade_points_map = {
         'S': 10, 'A': 9, 'B': 8, 'C': 7,
         'D': 6, 'E': 5, 'F': 0
     }
 
-    # Run our extraction and calculation functions
+    # extraction and calculation functions
     final_data = extract_student_data(regno, files)
     sgpa = calculate_sgpa(final_data, grade_points_map)
 
-    # Render the results page with the final data
+    #  results page with the final data
     return render_template('results.html', 
                            data=final_data, 
                            sgpa=f"{sgpa:.2f}", 
